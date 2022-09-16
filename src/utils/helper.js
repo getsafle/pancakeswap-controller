@@ -83,16 +83,16 @@ const transactionBuilder = async ({
 
         let data, gas = 21000000;
         if (fromEth) {
-            data = contract.interface.encodeFunctionData('swapExactETHForTokens', [amountOutMin, path, to, deadline])
-            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapExactETHForTokens(amountOutMin, path, to, deadline, { from: walletAddress }))._hex)
+            data = contract.interface.encodeFunctionData('swapExactETHForTokens', [amountOutMin, path, walletAddress, deadline])
+            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapExactETHForTokens(amountOutMin, path, walletAddress, deadline, { from: walletAddress }))._hex)
         }
         else if (toEth) {
-            data = contract.interface.encodeFunctionData('swapTokensForExactETH', [amountOutMin, amountInMax, path, to, deadline])
-            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapTokensForExactETH(amountOutMin, amountInMax, path, to, deadline, { from: walletAddress }))._hex)
+            data = contract.interface.encodeFunctionData('swapTokensForExactETH', [amountOutMin, amountInMax, path, walletAddress, deadline])
+            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapTokensForExactETH(amountOutMin, amountInMax, path, walletAddress, deadline, { from: walletAddress }))._hex)
         }
         else if (swapTokens) {
-            data = contract.interface.encodeFunctionData('swapTokensForExactTokens', [amountOutMin, amountInMax, path, to, deadline])
-            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapTokensForExactTokens(amountOutMin, amountInMax, path, to, deadline, { from: walletAddress }))._hex)
+            data = contract.interface.encodeFunctionData('swapTokensForExactTokens', [amountOutMin, amountInMax, path, walletAddress, deadline])
+            // gas = web3Utils.hexToNumber((await contract.estimateGas.swapTokensForExactTokens(amountOutMin, amountInMax, path, walletAddress, deadline, { from: walletAddress }))._hex)
         }
 
         const tx = {
@@ -150,7 +150,7 @@ const getExchangeRate = async ({
 }) => {
     try {
         const { tx: transaction, outputAmount } = await transactionBuilder({
-            walletAddress: null,
+            walletAddress,
             _toContractAddress: toContractAddress,
             toContractDecimal,
             _fromContractAddress: fromContractAddress,
@@ -173,6 +173,7 @@ const getExchangeRate = async ({
 }
 
 const getEstimatedGas = async ({
+    walletAddress,
     toContractAddress,
     toContractDecimal,
     fromContractAddress,
@@ -182,7 +183,7 @@ const getEstimatedGas = async ({
 }) => {
     try {
         const { tx: transaction } = await transactionBuilder({
-            walletAddress: null,
+            walletAddress,
             _toContractAddress: toContractAddress,
             toContractDecimal,
             _fromContractAddress: fromContractAddress,

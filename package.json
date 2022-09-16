@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/getsafle/pancakeswap-controller#readme",
   "dependencies": {
-    "@pancakeswap/sdk": "^3.0.0",
+    "@pancakeswap/sdk": "^2.4.3",
     "axios": "^0.25.0",
     "ethers": "^5.5.4",
     "web3-utils": "^1.7.0"

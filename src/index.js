@@ -2,7 +2,7 @@ const config = require('./config');
 const helper = require('./utils/helper')
 const web3Utils = require('web3-utils')
 
-class Uniswap {
+class Pancakeswap {
 
     constructor() { }
 
@@ -15,12 +15,13 @@ class Uniswap {
         }
     }
 
-    async getExchangeRate({ toContractAddress, toContractDecimal, fromContractAddress, fromContractDecimal, fromQuantity, slippageTolerance }) {
+    async getExchangeRate({ walletAddress, toContractAddress, toContractDecimal, fromContractAddress, fromContractDecimal, fromQuantity, slippageTolerance }) {
         try {
             const _toContractAddress = web3Utils.toChecksumAddress(toContractAddress)
             const _fromContractAddress = web3Utils.toChecksumAddress(fromContractAddress)
             const { response } = await helper.getExchangeRate(
                 {
+                    walletAddress,
                     toContractAddress: _toContractAddress,
                     toContractDecimal,
                     fromContractAddress: _fromContractAddress,
@@ -35,11 +36,12 @@ class Uniswap {
         }
     }
 
-    async getEstimatedGas({ toContractAddress, toContractDecimal, fromContractAddress, fromContractDecimal, fromQuantity, slippageTolerance }) {
+    async getEstimatedGas({ walletAddress, toContractAddress, toContractDecimal, fromContractAddress, fromContractDecimal, fromQuantity, slippageTolerance }) {
         try {
             const _toContractAddress = web3Utils.toChecksumAddress(toContractAddress)
             const _fromContractAddress = web3Utils.toChecksumAddress(fromContractAddress)
             const { response } = await helper.getEstimatedGas({
+                walletAddress,
                 toContractAddress: _toContractAddress,
                 toContractDecimal,
                 fromContractAddress: _fromContractAddress,
@@ -93,4 +95,4 @@ class Uniswap {
     }
 }
 
-module.exports = Uniswap;
+module.exports = Pancakeswap;

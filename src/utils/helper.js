@@ -143,6 +143,7 @@ const rawTransaction = async ({
 }
 
 const getExchangeRate = async ({
+    walletAddress,
     toContractAddress,
     toContractDecimal,
     fromContractAddress,

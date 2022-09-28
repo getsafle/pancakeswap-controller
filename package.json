@@ -1,6 +1,6 @@
 {
   "name": "@getsafle/pancakeswap-controller",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pancake controller for safle token swaps",
   "main": "src/index.js",
   "scripts": {
@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/getsafle/pancakeswap-controller#readme",
   "dependencies": {
+    "@getsafle/safle-token-lists": "^1.0.1",
     "@pancakeswap/sdk": "^2.4.3",
     "axios": "^0.25.0",
     "ethers": "^5.5.4",
